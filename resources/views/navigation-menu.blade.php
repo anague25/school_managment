@@ -16,6 +16,20 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('niveaux.list') }}" :active="request()->routeIs('niveaux.list')">
+                        {{ __('Niveaux') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('settings') }}" :active="request()->routeIs('settings')">
+                        {{ __('School Year') }}
+                    </x-nav-link>
+                </div>
+
+                {{-- end navigation links --}}
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">

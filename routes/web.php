@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NiveauxController;
+use App\Http\Controllers\SchoolYearController;
+use App\Http\Controllers\SettingsYearController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +20,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -25,4 +30,21 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    // nav-links
+    Route::prefix('niveaux')->group(function(){
+
+        Route::get('/',[NiveauxController::class,'index'])->name('niveaux.list');
+
+    });
+
+    Route::prefix('settings')->group(function(){
+
+        Route::get('/',[SchoolYearController::class,'index'])->name('settings');
+
+    });
+
+
+
+
 });
