@@ -9,4 +9,9 @@ class SchoolYearController extends Controller
    public function index(){
     return view('settings.index');
    }
+
+
+   public function create(){
+    return view('settings.create');
+   }
 }
