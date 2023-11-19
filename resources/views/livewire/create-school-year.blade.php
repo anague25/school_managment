@@ -2,17 +2,19 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
+
+                @if(Session::has('error'))
+
+                <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                    <h4>{{Session::get("error")}}</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+
+                @endif
+
                 <div class="card-header">
-                    <h3 class="text-capitalize">libelle de l'annee scolaire</h3>
+                    <h4 class="text-capitalize">libelle de l'annee scolaire</h4>
                 </div>
-
-
-                {{-- @error('success')
-                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{$message}}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                              </div>
-                          @enderror --}}
 
 
                 <div class="card-body">
