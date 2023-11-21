@@ -14,21 +14,9 @@ class Settings extends Component
 
 
 
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-
-    // public function updatedSearch(){
-
-    //     if(!empty($this->search)){
-    //         $schoolYears = SchoolYear::where('school_year','like','%'.$this->search.'%')->paginate(10);
-    //     }else{
-    //         $schoolYears = SchoolYear::paginate(1);
-    //     }
-
-    //    return view('livewire.settings',compact('schoolYears'));
-
+    // public function updatingSearch()
+    // {
+    //     $this->resetPage();
     // }
 
 
@@ -44,4 +32,31 @@ class Settings extends Component
        return view('livewire.settings',compact('schoolYears'));
 
     }
+
+
+
+    public function toggleStatus(SchoolYear $id){
+    //    if($id->active == 1){
+    //     $id->update([
+    //         "active" => "0"
+    //     ]);
+    //     $this->render();
+    //    }elseif($id->active == 0){
+    //     $id->update([
+    //         "active" => "1"
+    //     ]);
+
+    //     $this->render();
+    //    }
+
+
+         SchoolYear::where("active","1")->update(["active" => "0"]);
+         $id->active = "1";
+             $id->save();
+             $this->render();
+
+
+
+    }
+
 }

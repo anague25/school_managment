@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\LevelsController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\NiveauxController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SettingsYearController;
 
@@ -38,7 +38,7 @@ Route::middleware([
     // nav-links
     Route::prefix('niveaux')->group(function(){
 
-        Route::get('/',[NiveauxController::class,'index'])->name('niveaux.list');
+        Route::get('/',[LevelsController::class,'index'])->name('niveaux.list');
 
     });
 
@@ -46,6 +46,7 @@ Route::middleware([
 
         Route::get('/',[SchoolYearController::class,'index'])->name('settings');
         Route::get('/create-school-year',[SchoolYearController::class,'create'])->name('settings.create_school_year');
+        Route::get('/create-level',[LevelsController::class,'create'])->name('settings.create_levels');
 
     });
 

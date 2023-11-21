@@ -46,23 +46,19 @@
                             <th scope="row">{{$item->id}}</th>
                             <td>{{$item->school_year}}</td>
                             <td>
-                                @if ($item->active == 1)
-                                    <span class="badge bg-success">Active</span>
-                                @else
-                                    <span class="badge bg-danger">Inactive</span>
-                                @endif
+
+                                    <span class="badge {{$item->active == 1 ? 'bg-success':'bg-danger'}} ">{{$item->active == 1 ? 'Active':'Inactive'}}</span>
+
                             </td>
                             {{-- <td>{{$item->current_year}}</td> --}}
                             <td>
-                                @if ($item->active == 1)
-                                    <button class="btn btn-danger">Rendre Inactive</button>
-                                 @else
-                                    <button class="btn btn-success">Rendre Active</button>
-                                @endif
+
+                                    <button class="btn {{$item->active == 1 ? 'btn-danger':'btn-success'}}" wire:click='toggleStatus({{$item->id}})'>{{$item->active == 1 ? 'Rendre Inactive':'Rendre Active'}}</button>
+
                             </td>
 
                           </tr>
-                        @empty
+                            @empty
                             <tr>
                                 <td colspan="4">
                                     <div class="text-center d-flex justify-content-center ">
@@ -71,7 +67,7 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endforelse
+                          @endforelse
 
 
                     </tbody>
