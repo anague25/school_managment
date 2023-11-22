@@ -23,22 +23,10 @@
                         @csrf
                         @method('post')
                        
-
-                        <div class="mb-4 mt-2">
-                         <label for="libelle" class="form-label">libelle</label>
-                          <input type="text" id="libelle" class="form-control @error('libelle')
-                          is-invalid
-                          @enderror" wire:model='libelle' >
-                          @error('libelle')
-                              {{$message}}
-                          @enderror
-
-                        </div>
-
                         <div class="mb-4 mt-2">
                             <label for="select" class="form-label">select the level</label>
-                            <select name="" id="" class="form-control">
-                                <option value="1"></option>
+                            <select  id="" class="form-control"  wire:model="level_id" required>
+                                <option value=""></option>
 
                                 @foreach ($currentLevel as $item)
                                 <option value="{{$item->id}}">{{$item->libelle}}</option>
@@ -49,6 +37,18 @@
                           @enderror
 
                         </div>
+
+                        <div class="mb-4 mt-2">
+                         <label for="libelle" class="form-label">libelle</label>
+                          <input type="text" id="libelle" class="form-control @error('libelle')
+                          is-invalid
+                          @enderror" wire:model='libelle'  required>
+                          @error('libelle')
+                              {{$message}}
+                          @enderror
+
+                        </div>
+
 
                         <div class="row  justify-content-between mb-2">
                             <div class="col-4">
