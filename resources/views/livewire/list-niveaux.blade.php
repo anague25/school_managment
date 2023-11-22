@@ -37,6 +37,7 @@
                         <th scope="col">Code</th>
                         <th scope="col">Libelle</th>
                         <th scope="col">Montant Scolarite</th>
+                        <th scope="col">Action</th>
 
                       </tr>
                     </thead>
@@ -47,6 +48,10 @@
                             <td>{{$item->code}}</td>
                             <td>{{$item->libelle}}</td>
                             <td>{{$item->scolarite}}</td>
+                            <td>
+                                <a class="btn btn-primary" href="{{route('settings.edit_levels',["level"=>$item->id])}}">Edit</a>
+                                <button class="btn btn-danger" wire:click="delete({{$item->id}})">delete</button>
+                            </td>
                             {{-- <td>
 
                                     <span class="badge {{$item->active == 1 ? 'bg-success':'bg-danger'}} ">{{$item->active == 1 ? 'Active':'Inactive'}}</span>
