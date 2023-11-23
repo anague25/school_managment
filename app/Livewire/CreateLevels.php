@@ -16,8 +16,8 @@ class CreateLevels extends Component
 
     public function store(Level $level ){
         $this->validate([
-            "code" => "required|string|unique:levels,code",
-            "libelle" => "required|string|unique:levels,libelle",
+            "code" => "required|string",
+            "libelle" => "required|string",
             "scolarite" => "required|integer",
         ],[
             'code.required'=>"le champs est obligatoire",
@@ -41,7 +41,7 @@ class CreateLevels extends Component
 
             $level->code = $this->code;
             $level->libelle = $this->libelle;
-            $level->scolarite = $this->scolarite;
+            $level->scolarite = $this->scolarite; 
             $level->school_year_id = $activeSchoolYear->id;
             $level->save();
             return redirect()->route("niveaux.list")->with("success","level has successful added");

@@ -35,8 +35,8 @@
                         <thead>
                           <tr>
                             <th scope="col">Id</th>
-                            <th scope="col">Code</th>
                             <th scope="col">Libelle</th>
+                            <th scope="col">Niveau</th>
                             <th scope="col">Montant Scolarite</th>
                             <th scope="col">Action</th>
     
@@ -46,11 +46,12 @@
                             @forelse ($classlists as $item)
                             <tr class="align-middle">
                                 <th scope="row">{{$item->id}}</th>
-                                <td>{{$item->code}}</td>
                                 <td>{{$item->libelle}}</td>
-                                <td>{{$item->scolarite}}</td>
+                                <td>{{$item->level->libelle}}</td>
+                                <td>{{$item->level->scolarite}} Dollar</td>
+                               
                                 <td>
-                                    <a class="btn btn-primary" href="{{route('settings.edit_levels',["level"=>$item->id])}}">Edit</a>
+                                    <a class="btn btn-primary" href="{{route('settings.edit_levels',["level"=>$item->id])}}"> Edit </a>
                                     <button class="btn btn-danger" wire:click="delete({{$item->id}})">delete</button>
                                 </td>
                                 {{-- <td>
