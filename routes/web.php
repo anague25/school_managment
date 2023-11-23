@@ -56,6 +56,7 @@ Route::middleware([
     Route::prefix('classes')->group(function(){
         Route::get('/',[ClassController::class,'index'])->name('classes');
         Route::get('/create',[ClassController::class,'create'])->name('classes.create');
+        Route::get('/edit/{class}',[ClassController::class,'edit'])->name('classes.edit');
     });
 
 
