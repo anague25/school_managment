@@ -12,6 +12,12 @@ class ListClass extends Component
     use WithPagination;
 
     public String $search = '';
+
+    public function delete(Classe $class){
+        $class->delete();
+        return redirect()->route("classes")->with("success","Classroom had delete succesfully");
+
+    }
     public function render()
     {
         // $activeSchoolYear = SchoolYear::where("active","1")->first();

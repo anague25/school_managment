@@ -5,6 +5,7 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\LevelsController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SettingsYearController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,16 @@ Route::middleware([
         Route::get('/',[ClassController::class,'index'])->name('classes');
         Route::get('/create',[ClassController::class,'create'])->name('classes.create');
         Route::get('/edit/{class}',[ClassController::class,'edit'])->name('classes.edit');
+    });
+    
+
+    // Route  pour interagir avec les eleves
+
+    Route::prefix('students')->group(function(){
+        Route::get('/',[StudentController::class,'index'])->name('students');
+        Route::get('/create',[StudentController::class,'create'])->name('students.create');
+        Route::get('/{student}',[StudentController::class,'show'])->name('students.show');
+        Route::get('/edit/{student}',[StudentController::class,'edit'])->name('students.edit');
     });
 
 
