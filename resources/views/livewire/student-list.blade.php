@@ -51,7 +51,7 @@
                             <td>{{$item->last_name}}</td>
                             <td>{{$item->parent_contact}}</td>
                             <td>
-                                <a class="btn btn-primary" href="{{route('settings.edit_levels',["level"=>$item->id])}}">Edit</a>
+                                <a class="btn btn-primary" href="{{route('students.edit',["student"=>$item->id])}}">Edit</a>
                                 <button class="btn btn-danger" wire:click="delete({{$item->id}})">delete</button>
                             </td>
                             {{-- <td>

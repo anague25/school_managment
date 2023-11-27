@@ -6,20 +6,32 @@ use Exception;
 use App\Models\Student;
 use Livewire\Component;
 
-class CreateStudent extends Component
+class EditStudent extends Component
 {
-
+    public $student;
 
 public $matricule;    
 public $nom;    
 public $prenom;    
 public $naissance;    
-public $contact_parent;    
+public $contact_parent;  
+
+    public function mount(){
+        $this->matricule = $this->student->matricule;
+        $this->nom = $this->student->first_name;
+        $this->prenom = $this->student->last_name;
+        $this->contact_parent = $this->student->parent_contact;
+        $this->naissance = $this->student->birth;
+
+    }
+
+    public function update()
+    {
+        $student = Student::find($this->student->id);
 
 
-    public function store(Student $student ){
         $this->validate([
-            "matricule" => "required|string|unique:students,matricule",
+            "matricule" => "required|string",
             "nom" => "required|string",
             "prenom" => "required|string",
             "naissance" => "required|date",
@@ -37,7 +49,7 @@ public $contact_parent;
             $student->birth = $this->naissance;
             $student->parent_contact = $this->contact_parent;
             $student->save();
-            return redirect()->route("students")->with("success","Students has successful added");
+            return redirect()->route("students")->with("success","Students has successful updated");
 
             // dd($activeSchoolYear->active);
 
@@ -50,9 +62,11 @@ public $contact_parent;
         }
 
 
+
     }
+
     public function render()
     {
-        return view('livewire.create-student');
+        return view('livewire.edit-student');
     }
 }
