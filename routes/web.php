@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttributionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\LevelsController;
@@ -68,6 +69,12 @@ Route::middleware([
         Route::get('/create',[StudentController::class,'create'])->name('students.create');
         Route::get('/{student}',[StudentController::class,'show'])->name('students.show');
         Route::get('/edit/{student}',[StudentController::class,'edit'])->name('students.edit');
+    });
+   
+    Route::prefix('inscription')->group(function(){
+        Route::get('/',[AttributionController::class,'index'])->name('inscription');
+        Route::get('/create',[AttributionController::class,'create'])->name('inscription.create');
+      
     });
 
 

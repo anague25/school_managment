@@ -18,6 +18,11 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('inscription') }}" :active="request()->routeIs('inscription')">
+                        {{ __('Inscription') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('niveaux.list') }}" :active="request()->routeIs('niveaux.list')">
                         {{ __('Niveaux') }}
                     </x-nav-link>
