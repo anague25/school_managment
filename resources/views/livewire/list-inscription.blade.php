@@ -7,6 +7,19 @@
                 <input type="text" wire:model.live='search' class="form-control">
             </form>
         </div>
+        <div class="col-4">
+        {{-- {{$search}} --}}
+            <form >
+                <select  id="selectid" class="form-control"  
+                wire:model="level_id" wire:model.live='level_id' required>
+                    <option value=""></option>
+
+                    @foreach ($currentLevel as $item)
+                    <option value="{{$item->id}}">{{$item->libelle}}</option>
+                    @endforeach
+                </select>
+            </form>
+        </div>
         <div class="col-4 text-end">
             <a href="{{route('inscription.create')}}" class="btn btn-primary">Add Inscription </a>
         </div>
@@ -46,10 +59,10 @@
                         @forelse ($inscriptionList as $item)
                         <tr class="align-middle">
                             <th scope="row">{{$item->id}}</th>
-                            <td>{{$item->matricule}}</td>
-                            <td>{{$item->first_name}}</td>
-                            <td>{{$item->last_name}}</td>
-                            <td>{{$item->parent_contact}}</td>
+                            <td>{{$item->student->matricule}}</td>
+                            <td>{{$item->student->first_name}}</td>
+                            <td>{{$item->student->last_name}}</td>
+                            <td>{{$item->classe->libelle}}</td>
                             <td>
                                 <a class="btn btn-primary" href="{{route('students.edit',["student"=>$item->id])}}">Edit</a>
                                 <button class="btn btn-danger" wire:click="delete({{$item->id}})">delete</button>

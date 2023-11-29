@@ -23,8 +23,10 @@ class ListInscription extends Component
         if(!empty($this->search)){
             $inscriptionList = Attribution::where('first_name','like','%'.$this->search.'%')->orWhere('last_name','like','%'.$this->search.'%')->paginate(10);
         }else{
-            $inscriptionList = Attribution::paginate(10);
+            $inscriptionList = Attribution::with(['student','classe'])->paginate(10);
         }
+
+        // dd($inscriptionList);
         return view('livewire.list-inscription',compact('inscriptionList'));
     }
 }
