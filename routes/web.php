@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\AttributionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\LevelsController;
-use App\Http\Controllers\SchoolYearController;
-use App\Http\Controllers\SettingsYearController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SchoolYearController;
+use App\Http\Controllers\AttributionController;
+use App\Http\Controllers\SettingsYearController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +76,14 @@ Route::middleware([
         Route::get('/',[AttributionController::class,'index'])->name('inscription');
         Route::get('/create',[AttributionController::class,'create'])->name('inscription.create');
         Route::get('/edit/{attribution}',[AttributionController::class,'edit'])->name('inscription.edit');
+      
+    });
+
+    Route::prefix('payments')->group(function(){
+        Route::get('/',[PaymentController::class,'index'])->name('payments');
+        Route::get('/create',[PaymentController::class,'create'])->name('payments.create');
+        Route::get('/edit/{payment}',[PaymentController::class,'edit'])->name('payments.edit');
+       
       
     });
 
