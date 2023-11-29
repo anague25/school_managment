@@ -22,10 +22,31 @@
                     <form method="POST" wire:submit.prevent='store'>
                         @csrf
                         @method('post')
-                       
+
+
                         <div class="mb-4 mt-2">
-                            <label for="select" class="form-label">select the level</label>
-                            <select  id="" class="form-control"  wire:model="level_id" required>
+                            <label for="matricule" class="form-label">matricule</label>
+                             <input type="text" id="matricule" class="form-control @error('matricule')
+                             is-invalid
+                             @enderror" wire:model='matricule' wire:model.live='matricule' name='matricule' required>
+                             @error('matricule')
+                                 {{$message}}
+                             @enderror
+   
+                           </div>
+
+                        <div class="mb-4 mt-2">
+                            <label for="name" class="form-label">Full Name</label>
+                             <input type="text" id="name" class="form-control" 
+                             wire:model='name'  wire:model.live='name' readonly>
+                            
+   
+                           </div>
+
+                           <div class="mb-4 mt-2">
+                            <label for="selectid" class="form-label">select the level</label>
+                            <select  id="selectid" class="form-control"  
+                            wire:model="level_id" wire:model.live='level_id' required>
                                 <option value=""></option>
 
                                 @foreach ($currentLevel as $item)
@@ -38,16 +59,29 @@
 
                         </div>
 
-                        <div class="mb-4 mt-2">
-                         <label for="libelle" class="form-label">libelle</label>
-                          <input type="text" id="libelle" class="form-control @error('libelle')
-                          is-invalid
-                          @enderror" wire:model='libelle'  required>
-                          @error('libelle')
+
+                           <div class="mb-4 mt-2">
+                            <label for="select" class="form-label">select the class</label>
+                            <select  id="" class="form-control"  
+                            wire:model="classe_id" wire:model.live='classe_id' required>
+                                <option value=""></option>
+
+                                @foreach ($classlists as $item)
+                                <option value="{{$item->id}}">{{$item->libelle}}</option>
+                                @endforeach
+                            </select>
+                          @error('classe_id')
                               {{$message}}
                           @enderror
 
                         </div>
+
+                       
+                       
+
+                        
+
+                       
 
 
                         <div class="row  justify-content-between mb-2">

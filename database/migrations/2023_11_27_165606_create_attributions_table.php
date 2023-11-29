@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('classe_id');
             $table->foreign('classe_id')->references('id')->on('classes');
             $table->foreignId('school_year_id')->constrained( table: 'school_years', indexName: 'school_year_id');
-            $table->text('comments')->nullable;
+            $table->text('comments')->nullable();
             $table->timestamps();
         });
     }
