@@ -11,10 +11,10 @@
         {{-- {{$search}} --}}
             <form >
                 <select  id="selectid" class="form-control"  
-                wire:model="level_id" wire:model.live='level_id' required>
+                wire:model="selected_classe_id" wire:model.live='selected_classe_id' required>
                     <option value=""></option>
 
-                    @foreach ($currentLevel as $item)
+                    @foreach ($classlists as $item)
                     <option value="{{$item->id}}">{{$item->libelle}}</option>
                     @endforeach
                 </select>
@@ -64,8 +64,7 @@
                             <td>{{$item->student->last_name}}</td>
                             <td>{{$item->classe->libelle}}</td>
                             <td>
-                                <a class="btn btn-primary" href="{{route('students.edit',["student"=>$item->id])}}">Edit</a>
-                                <button class="btn btn-danger" wire:click="delete({{$item->id}})">delete</button>
+                                <a class="btn btn-primary" href="{{route('inscription.edit',["attribution"=>$item->id])}}">Edit</a>
                             </td>
                             {{-- <td>
 

@@ -74,6 +74,7 @@ Route::middleware([
     Route::prefix('inscription')->group(function(){
         Route::get('/',[AttributionController::class,'index'])->name('inscription');
         Route::get('/create',[AttributionController::class,'create'])->name('inscription.create');
+        Route::get('/edit/{attribution}',[AttributionController::class,'edit'])->name('inscription.edit');
       
     });
 
