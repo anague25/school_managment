@@ -16,10 +16,10 @@ class ListPayment extends Component
         if(!empty($this->search)){
             $payments = Payment::where('first_name','like','%'.$this->search.'%')->orWhere('last_name','like','%'.$this->search.'%')->paginate(10);
         }else{
-            $payments = Payment::paginate(10);
+            $payments = Payment::with('student')->paginate(10);
         }
 
-
+// dd($payments);
         return view('livewire.list-payment',compact('payments'));
     }
 }

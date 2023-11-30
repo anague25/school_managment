@@ -7,6 +7,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\AttributionController;
+use App\Http\Controllers\ParentController;
 use App\Http\Controllers\SettingsYearController;
 
 /*
@@ -83,6 +84,15 @@ Route::middleware([
         Route::get('/',[PaymentController::class,'index'])->name('payments');
         Route::get('/create',[PaymentController::class,'create'])->name('payments.create');
         Route::get('/edit/{payment}',[PaymentController::class,'edit'])->name('payments.edit');
+       
+      
+    });
+
+
+    Route::prefix('parents')->group(function(){
+        Route::get('/',[ParentController::class,'index'])->name('parents');
+        Route::get('/create',[ParentController::class,'create'])->name('parents.create');
+        Route::get('/edit/{parents}',[ParentController::class,'edit'])->name('parents.edit');
        
       
     });

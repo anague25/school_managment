@@ -7,22 +7,8 @@
                 <input type="text" wire:model.live='search' class="form-control">
             </form>
         </div>
-
-        {{-- <div class="col-4">
-        
-            <form >
-                <select  id="selectid" class="form-control"  
-                wire:model="selected_classe_id" wire:model.live='selected_classe_id' required>
-                    <option value=""></option>
-
-                    @foreach ($classlists as $item)
-                    <option value="{{$item->id}}">{{$item->libelle}}</option>
-                    @endforeach
-                </select>
-            </form>
-        </div> --}}
         <div class="col-4 text-end">
-            <a href="{{route('payments.create')}}" class="btn btn-primary">Make A Payment </a>
+            <a href="{{route('parents.create')}}" class="btn btn-primary">Add Parent </a>
         </div>
     </div>
 
@@ -47,31 +33,38 @@
                 <table class="table m-0 text-center">
                     <thead>
                       <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Matricule</th>
+                        <th scope="col">Id</th>
                         <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
-                        <th scope="col">Classe</th>
-                        <th scope="col">Amount</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Parent Contact</th>
                         <th scope="col">Action</th>
 
                       </tr>
                     </thead>
                     <tbody>
-                        @forelse ($payments as $item)
+                        @forelse ($parents as $item)
                         <tr class="align-middle">
-                            <th scope="row">{{$item->created_at}}</th>
-                            <td>{{$item->student->matricule}}</td>
-                            <td>{{$item->student->first_name}}</td>
-                            <td>{{$item->student->last_name}}</td>
-                            <td>{{$item->classe->libelle}}</td>
-                            <td>{{$item->amount}}</td>
+                            <th scope="row">{{$item->id}}</th>
+                            <td>{{$item->first_name}}</td>
+                            <td>{{$item->last_name}}</td>
+                            <td>{{$item->email}}</td>
+                            <td>{{$item->parent_contact}}</td>
                             <td>
-                                <a class="btn btn-primary" href="{{route('inscription.edit',["attribution"=>$item->id])}}">Edit</a>
+                                <a class="btn btn-primary" href="{{route('parents.edit',["parents"=>$item->id])}}">Edit</a>
+                                <button class="btn btn-danger" wire:click="delete({{$item->id}})">delete</button>
                             </td>
-                            
-                            <td>{{$item->current_year}}</td> 
-                            
+                            {{-- <td>
+
+                                    <span class="badge {{$item->active == 1 ? 'bg-success':'bg-danger'}} ">{{$item->active == 1 ? 'Active':'Inactive'}}</span>
+
+                            </td>
+                            {{-- <td>{{$item->current_year}}</td> --}}
+                            {{-- <td>
+
+                                    <button class="btn {{$item->active == 1 ? 'btn-danger':'btn-success'}}" wire:click='toggleStatus({{$item->id}})'>{{$item->active == 1 ? 'Rendre Inactive':'Rendre Active'}}</button>
+
+                            </td>  --}}
 
                           </tr>
                             @empty
@@ -83,7 +76,7 @@
                                     </div>
                                 </td>
                             </tr>
-                          @endforelse 
+                          @endforelse
 
 
                     </tbody>
@@ -91,7 +84,7 @@
 
                 <div class="mt-2">
                    {{-- {{$levels->links}} --}}
-                  {!! $payments->render() !!}
+                  {!! $parents->render() !!}
                 </div>
 
             </div>

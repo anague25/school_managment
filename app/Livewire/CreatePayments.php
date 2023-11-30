@@ -18,7 +18,7 @@ class CreatePayments extends Component
     public $student;
     public $student_id;
     public function store(Payment $payment){
-        $alreadyPayment = 0;
+        $totalPaid = 0;
     $activeSchoolYear = SchoolYear::where("active","1")->first();
 
     $getClasseQuery = Attribution::where('student_id',
@@ -32,7 +32,18 @@ class CreatePayments extends Component
     $activeSchoolYear->id)->get();
 
     foreach($studentPaymentsList as $studentPaymet){
-        $alreadyPayment = $alreadyPayment + $studentPaymet->amount;
+        $totalPaid = $totalPaid + $studentPaymet->amount;
+    }
+
+$operationResult = $totalPaid - $montantScolarite;
+    if(($totalPaid + $this->montant) > $montantScolarite ){
+
+        if($operationResult == 0){
+            return redirect()->route('payments')->with('success','Felicitation la scolarite de cet eleve est regle!');
+        }else{
+            return back()->with('error','le montant saisie depasse la scolarite. il reste a payer '.$montantScolarite - $totalPaid.'Euro ou Dollars');
+
+        }
     }
 
 

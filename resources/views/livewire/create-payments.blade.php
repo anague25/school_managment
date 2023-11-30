@@ -13,7 +13,7 @@
                 @endif
 
                 <div class="card-header">
-                    <h4 class="text-capitalize"> Add Classroom</h4>
+                    <h4 class="text-capitalize"> Add Payment</h4>
                 </div>
 
 
