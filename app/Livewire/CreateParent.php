@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Exception;
 use Livewire\Component;
 use App\Models\ParentStudent;
+use App\Notifications\SendParentRegistrationNotification;
 
 class CreateParent extends Component
 {
@@ -33,9 +34,19 @@ public $contact;
             $parent->last_name = $this->prenom;
             $parent->parent_contact = $this->contact;
             $parent->save();
+            if($parent){
+                $parent->notify(new SendParentRegistrationNotification());
+            }
             return redirect()->route("parents")->with("success","parents has successful added");
 
             // dd($activeSchoolYear->active);
+
+// envoyer un mail au parent si il est bien inscrit dans la bd
+
+           
+
+
+
 
         }
 
