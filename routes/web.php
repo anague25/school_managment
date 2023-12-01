@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FeesController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\LevelsController;
+use App\Http\Controllers\ParentController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\AttributionController;
-use App\Http\Controllers\ParentController;
 use App\Http\Controllers\SettingsYearController;
 
 /*
@@ -93,6 +94,15 @@ Route::middleware([
         Route::get('/',[ParentController::class,'index'])->name('parents');
         Route::get('/create',[ParentController::class,'create'])->name('parents.create');
         Route::get('/edit/{parents}',[ParentController::class,'edit'])->name('parents.edit');
+       
+      
+    });
+
+    Route::prefix('fees')->group(function(){
+        Route::get('/',[FeesController::class,'index'])->name('fees');
+        Route::get('/create',[FeesController::class,'create'])->name('fees.create');
+        Route::get('/edit/{fee}',[FeesController::class,'edit'])->name('fees.edit');
+       
        
       
     });
