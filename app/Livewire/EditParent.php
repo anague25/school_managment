@@ -2,10 +2,9 @@
 
 namespace App\Livewire;
 
-use App\Models\Family;
+use App\Models\Parennt;
 use Exception;
 use Livewire\Component;
-use App\Models\ParentStudent;
 
 class EditParent extends Component
 {
@@ -34,7 +33,7 @@ public function mount(){
 
     public function update(){
 
-        $parent = Family::find($this->parents->id);
+        $parent = Parennt::find($this->parents->id);
 
         $this->validate([
             "email" => "required|email",
