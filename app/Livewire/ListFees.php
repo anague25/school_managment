@@ -23,13 +23,15 @@ class ListFees extends Component
     public function render()
     {
 
-        $activeSchoolYear = SchoolYear::where("active","1")->first();
 
 
         if(!empty($this->search)){
             $fees = SchoolFees::where('libelle','like','%'.$this->search.'%')->orWhere('code','like','%'.$this->search.'%')->paginate(10);
         }else{
-            $fees = SchoolFees::with(['level','schoolyear'])->whereRelation('schoolyear','school_year_id',$activeSchoolYear->id)->paginate(10);
+            $activeSchoolYear = SchoolYear::where("active","1")->first();
+
+            $fees = SchoolFees::with(['level','schoolyear'])->whereRelation('schoolyear',
+            'school_year_id',$activeSchoolYear->id)->paginate(10);
         }
         return view('livewire.list-fees',compact('fees'));
     }

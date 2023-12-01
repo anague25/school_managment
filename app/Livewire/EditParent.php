@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Family;
 use Exception;
 use Livewire\Component;
 use App\Models\ParentStudent;
@@ -33,7 +34,7 @@ public function mount(){
 
     public function update(){
 
-        $parent = ParentStudent::find($this->parents->id);
+        $parent = Family::find($this->parents->id);
 
         $this->validate([
             "email" => "required|email",

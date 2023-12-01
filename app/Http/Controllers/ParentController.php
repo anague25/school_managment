@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ParentStudent;
+use App\Models\Family;
 use Illuminate\Http\Request;
 
 class ParentController extends Controller
@@ -15,7 +15,7 @@ class ParentController extends Controller
        public function create(){
         return view('parents.create');
        }
-       public function edit(ParentStudent $parents){
+       public function edit(Family $parents){
         return view('parents.edit',compact('parents'));
        }
 }

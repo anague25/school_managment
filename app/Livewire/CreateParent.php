@@ -2,9 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Models\Family;
 use Exception;
 use Livewire\Component;
-use App\Models\ParentStudent;
 use App\Notifications\SendParentRegistrationNotification;
 
 class CreateParent extends Component
@@ -16,9 +16,9 @@ public $prenom;
 public $contact;    
 
 
-    public function store(ParentStudent $parent ){
+    public function store(Family $parent ){
         $this->validate([
-            "email" => "required|email|unique:parent_students,email",
+            "email" => "required|email|unique:parents,email",
             "nom" => "required|string",
             "prenom" => "required|string",
             "contact" => "required|integer",

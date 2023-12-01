@@ -7,6 +7,7 @@ use App\Models\Classe;
 use App\Models\Payment;
 use App\Models\Student;
 use Livewire\Component;
+use App\Models\SchoolFees;
 use App\Models\SchoolYear;
 use App\Models\Attribution;
 
@@ -23,9 +24,17 @@ class CreatePayments extends Component
 
     $getClasseQuery = Attribution::where('student_id',
     $this->student_id)->where('school_year_id',$activeSchoolYear->id)->first();
+   
     $studentClasseId = $getClasseQuery->classe_id;
+
     $classData = Classe::with('level')->find($studentClasseId);
-    $montantScolarite = $classData->level->scolarite;
+    $studentLevelId = $classData->level->id;
+
+    $query = SchoolFees::where('level_id',
+    $studentLevelId)->where('school_year_id',
+    $activeSchoolYear->id)->first();
+
+        $montantScolarite  = $query->amount;
                 
     $studentPaymentsList = Payment::where('student_id',
     $this->student_id)->where('school_year_id',
