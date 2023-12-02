@@ -1,6 +1,6 @@
 <div>
     <div class="row px-5">
-        <div class="col-lg-8 bg-white p-2">
+        <div class="col-lg-7 rounded bg-white p-2">
            <h4 class="border-top-0 border-end-0 border-start-0 border-danger border-2"> Lorem ipsum dolor sit, am</h4>
            <section class="">
            <div class="d-flex">
@@ -15,7 +15,7 @@
 
             <div class="ps-2">
                 <div><span class="fw-bold">Matricule : {{$student->matricule}}</span></div>
-                <div><span class="fw-bold">{{$student->first_name}} {{$student->last_name}}</span></div>
+                <div><span class="fw-bold">Nom :{{$student->first_name}} {{$student->last_name}}</span></div>
            
                 <div><span class="fw-bold">Classe Actuelle : {{$this->getCurrentClasse()}}</span></div>
             </div>
@@ -38,8 +38,19 @@
 
            <div>{{$studentsLastPayment->links()}}</div>
         </div>
-        <div class="col-lg-4">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab facilis similique aperiam minus architecto, officiis odit optio exercitationem natus vitae. Quaerat molestias quis vel deleniti perferendis iure, distinctio quod repudiandae?
+        <div class="col-lg-4 bg-dark  ms-2 p-2 rounded">
+            <h4 class="text-white fw-bold text-center text-capitalize border-top-0 border-end-0 border-start-0 border-danger border-2">Information du parent</h4>
+            <div class="info-parent p-3">
+                
+            @forelse ($this->getStudentParent() as $parent)
+             <h4 class="text-white fw-bold"><span class="border-top-0 border-end-0 border-start-0 border-danger border-2">Nom :</span> {{$parent->first_name}} {{$parent->last_name}}</h4> 
+             <h4 class="text-white"><span class="border-top-0 border-end-0 border-start-0 border-danger border-2">Email :</span> {{$parent->email}}</h4> 
+             <h4 class="text-white"><span class="border-top-0 border-end-0 border-start-0 border-danger border-2">Contact :</span> {{$parent->parent_contact}}</h4> 
+            @empty
+                <h4 class="text-uppercase text-danger text-center">aucun parent trouve</h4>
+            @endforelse
+           </div>
+           
         </div>
 
     </div>
