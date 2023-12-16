@@ -29,7 +29,7 @@
                                 <option value=""></option>
 
                                 @foreach ($currentLevel as $item)
-                                <option value="{{$item->id}}">{{$item->libelle}}</option>
+                                <option value="{{$item->level->id}}">{{$item->level->code}}</option>
                                 @endforeach
                             </select>
                           @error('level_id')

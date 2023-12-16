@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Classe;
 use App\Models\Level;
+use App\Models\SchoolFees;
 use Livewire\Component;
 use App\Models\SchoolYear;
 
@@ -52,8 +53,8 @@ class CreateClasse extends Component
     public function render()
     {
         $activeSchoolYear = SchoolYear::where("active","1")->first();
-        $currentLevel = Level::where('school_year_id',
-        $activeSchoolYear->id)->get();
+        $currentLevel = SchoolFees::with('level')->where('school_year_id',$activeSchoolYear->id)->get();
+        // dd($currentLevel);
         return view('livewire.create-classe',compact('currentLevel'));
     }
 }
